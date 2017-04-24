@@ -4,7 +4,7 @@ import java.io.*;
 
 public final class FileStore {
 
-	public static enum Store {
+	public enum Store {
 
 		ARCHIVE(0),
 
@@ -18,7 +18,7 @@ public final class FileStore {
 
 		private int index;
 
-		private Store(int index) {
+		Store(int index) {
 			this.index = index;
 		}
 

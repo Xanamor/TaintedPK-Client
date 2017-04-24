@@ -109,7 +109,7 @@ public final class StringUtils {
 	 * Used for the login screen to hide a users password
 	 */
 	public static String passwordAsterisks(String password) {
-		StringBuffer stringbuffer = new StringBuffer();
+		StringBuilder stringbuffer = new StringBuilder();
 		for (int index = 0; index < password.length(); index++)
 			stringbuffer.append("*");
 		return stringbuffer.toString();

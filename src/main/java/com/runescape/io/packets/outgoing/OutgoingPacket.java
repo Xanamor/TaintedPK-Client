@@ -4,6 +4,6 @@ import com.runescape.io.ByteBuffer;
 
 public interface OutgoingPacket {
 
-	public void buildPacket(ByteBuffer buf);
+	void buildPacket(ByteBuffer buf);
 	
 }

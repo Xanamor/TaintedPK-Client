@@ -2611,8 +2611,8 @@ public class Model extends Renderable {
 		if (i1 == 1) {
 			Rasterizer3D.drawFlatTriangle(projected_vertex_y[j], projected_vertex_y[k],
 					projected_vertex_y[l], projected_vertex_x[j], projected_vertex_x[k],
-					projected_vertex_x[l], modelIntArray3[faceHslA[i]], camera_vertex_z[j], camera_vertex_z[k], camera_vertex_z[l]);;
-			return;
+					projected_vertex_x[l], modelIntArray3[faceHslA[i]], camera_vertex_z[j], camera_vertex_z[k], camera_vertex_z[l]);
+            return;
 		}
 		if (i1 == 2) {
 			int j1 = faceDrawType[i] >> 2;

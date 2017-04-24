@@ -19,7 +19,7 @@ public final class Configuration {
 	/**
 	 * The address of the server that the client will be connecting to
 	 */
-	public static String server_address = "167.114.23.209"; // 108.61.41.186            localhost
+	public static String server_address = "167.114.23.209";
 	/**
 	 * The port of the server that the client will be connecting to
 	 */
@@ -27,6 +27,7 @@ public final class Configuration {
 	
 	public static final int CLIENT_VERSION = 3;
 
+	//TODO: Move to a good directory, must be cross platform
 	public static final String CACHE_DIRECTORY = "./Cache/";
 	//System.getProperty("user.home") + File.separator + "OSRSPKV"+CLIENT_VERSION+"/";
 	

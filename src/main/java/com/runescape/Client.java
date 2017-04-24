@@ -7,6 +7,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
@@ -160,7 +161,6 @@ import com.runescape.util.PacketConstants;
 import com.runescape.util.SecondsTimer;
 import com.runescape.util.SkillConstants;
 import com.runescape.util.StringUtils;
-import com.sun.glass.events.KeyEvent;
 
 public class Client extends GameApplet {
 
@@ -269,8 +269,8 @@ public class Client extends GameApplet {
 	}
 	
 	public enum ScreenMode {
-		FIXED, RESIZABLE, FULLSCREEN;
-	}
+		FIXED, RESIZABLE, FULLSCREEN
+    }
 
 	private Fog fog = new Fog();
 
@@ -279,7 +279,7 @@ public class Client extends GameApplet {
 	private Sprite hp;
 
 	//Timers
-	public List<EffectTimer> effects_list = new CopyOnWriteArrayList<EffectTimer>();
+	public List<EffectTimer> effects_list = new CopyOnWriteArrayList<>();
 
 	public void addEffectTimer(EffectTimer et) {
 
@@ -428,8 +428,8 @@ public class Client extends GameApplet {
 
 	private enum SpawnTabType {
 		INVENTORY,
-		BANK;
-	}
+		BANK
+    }
 
 	/**
 	 * Spawnable Items
@@ -641,7 +641,7 @@ public class Client extends GameApplet {
 				return;
 			}
 		} else {
-			ArrayList<Integer> list = new ArrayList<Integer>();
+			ArrayList<Integer> list = new ArrayList<>();
 			int y = font_height;
 
 			boolean go_on = true;
@@ -649,14 +649,14 @@ public class Client extends GameApplet {
 				go_on = false;
 
 				for (int i = 0; i < xp_added.length; i++) {
-					if (xp_added[i][0] == -1 || list.contains(new Integer(i)))
+					if (xp_added[i][0] == -1 || list.contains(i))
 						continue;
 
 					if (xp_added[i][2] < y) {
 						xp_added[i][2] = y;
 						y += font_height;
 						go_on = true;
-						list.add(new Integer(i));
+						list.add(i);
 					}
 				}
 			}
@@ -1603,7 +1603,7 @@ public class Client extends GameApplet {
 					continue main;
 				}
 			}
-			frequencies.add(new AbstractMap.SimpleEntry<Integer, Integer>(value, 1));
+			frequencies.add(new AbstractMap.SimpleEntry<>(value, 1));
 		}
 		return frequencies.get(maxIndex);
 	}
@@ -10819,8 +10819,8 @@ public class Client extends GameApplet {
 	public enum BankTabShow {
 		FIRST_ITEM_IN_TAB,
 		DIGIT,
-		ROMAN_NUMERAL;
-	}
+		ROMAN_NUMERAL
+    }
 
 
 	/**
@@ -16372,7 +16372,7 @@ public class Client extends GameApplet {
 
 	public static long findSize(String path) { 
 		long totalSize = 0;
-		ArrayList<String> directory = new ArrayList<String>();
+		ArrayList<String> directory = new ArrayList<>();
 		File file = new File(path);
 
 		if(file.isDirectory()) { 

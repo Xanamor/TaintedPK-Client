@@ -74,7 +74,7 @@ WindowListener {
 	}
 
 	public boolean appletClient() {
-		return gameFrame == null && isApplet == true;
+		return gameFrame == null && isApplet;
 	}
 
 	final void createClientFrame(int w, int h) {

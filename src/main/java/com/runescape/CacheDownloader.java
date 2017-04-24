@@ -7,16 +7,12 @@ import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.zip.Deflater;
-import java.util.zip.Inflater;
 
 import javax.net.ssl.HttpsURLConnection;
 import javax.swing.JOptionPane;
 
 import com.runescape.sign.SignLink;
-import com.runescape.util.Unzip;
 import net.lingala.zip4j.core.ZipFile;
 import net.lingala.zip4j.exception.ZipException;
 

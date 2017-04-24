@@ -52,8 +52,7 @@ public final class MiscUtils {
 		}
 
 		for (; l % 37L == 0L && l != 0L; l /= 37L) {
-			;
-		}
+        }
 		return l;
 	}
 	

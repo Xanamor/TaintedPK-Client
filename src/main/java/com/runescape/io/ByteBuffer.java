@@ -127,8 +127,7 @@ public final class ByteBuffer {
 		int pos = position;
 
 		while (buffer[position++] != 10) {
-			;
-		}
+        }
 
 		byte[] buf = new byte[position - pos - 1];
 		System.arraycopy(buffer, pos, buf, pos - pos, position - 1 - pos);

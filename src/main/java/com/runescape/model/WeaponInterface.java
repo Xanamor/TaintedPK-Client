@@ -72,13 +72,13 @@ public enum WeaponInterface {
 	 * @param specialMeter
 	 *            the id of the special meter for this interface.
 	 */
-	private WeaponInterface(int interfaceId, int specialBar, int specialMeter) {
+    WeaponInterface(int interfaceId, int specialBar, int specialMeter) {
 		this.interfaceId = interfaceId;
 		this.specialBar = specialBar;
 		this.specialMeter = specialMeter;
 	}
 	
-	private WeaponInterface(int interfaceId) {
+	WeaponInterface(int interfaceId) {
 		this(interfaceId, -1, -1);
 	}
 

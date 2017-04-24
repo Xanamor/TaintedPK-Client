@@ -10,15 +10,15 @@ public final class Frame {
 		try {
 			final Buffer ay = new Buffer(array);
 			final FrameBase b2 = new FrameBase(ay);
-			final int n = ay.readUShort();;
-			animationlist[file] = new Frame[n * 3];
+			final int n = ay.readUShort();
+            animationlist[file] = new Frame[n * 3];
 			final int[] array2 = new int[500];
 			final int[] array3 = new int[500];
 			final int[] array4 = new int[500];
 			final int[] array5 = new int[500];
 			for (int j = 0; j < n; ++j) {
-				final int k = ay.readUShort();;
-				final Frame[] array6 = animationlist[file];
+				final int k = ay.readUShort();
+                final Frame[] array6 = animationlist[file];
 				final int n2 = k;
 				final Frame q = new Frame();
 				array6[n2] = q;
