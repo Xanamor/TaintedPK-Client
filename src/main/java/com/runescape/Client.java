@@ -584,8 +584,8 @@ public class Client extends GameApplet {
 	public static int cameraZoom = 600;
 	public static boolean showChatComponents = true;
 	public static boolean showTabComponents = true;
-	public static boolean changeTabArea = frameMode == ScreenMode.FIXED ? false : true;
-	public static boolean changeChatArea = frameMode == ScreenMode.FIXED ? false : true;
+	public static boolean changeTabArea = frameMode != ScreenMode.FIXED;
+	public static boolean changeChatArea = frameMode != ScreenMode.FIXED;
 	public static boolean transparentTabArea = false;
 	private final int[] soundVolume;
 
@@ -615,8 +615,8 @@ public class Client extends GameApplet {
 			rebuildFrameSize(screenMode, frameWidth, frameHeight);
 			setBounds();
 		}
-		showChatComponents = screenMode == ScreenMode.FIXED ? true : showChatComponents;
-		showTabComponents = screenMode == ScreenMode.FIXED ? true : showTabComponents;
+		showChatComponents = screenMode == ScreenMode.FIXED || showChatComponents;
+		showTabComponents = screenMode == ScreenMode.FIXED || showTabComponents;
 	}
 
 	private void addToXPCounter(int skill, int xp) {
@@ -790,11 +790,8 @@ public class Client extends GameApplet {
 		if (!changeTabArea) {
 			if (super.mouseX > 0 && super.mouseY > 0 && super.mouseY < frameWidth
 					&& super.mouseY < frameHeight) {
-				if (super.mouseX >= frameWidth - 242 && super.mouseY >= frameHeight - 335) {
-					return false;
-				}
-				return true;
-			}
+                return !(super.mouseX >= frameWidth - 242 && super.mouseY >= frameHeight - 335);
+            }
 			return false;
 		}
 		if (showTabComponents) {
@@ -822,20 +819,14 @@ public class Client extends GameApplet {
 	}
 
 	public boolean mouseInRegion(int x1, int y1, int x2, int y2) {
-		if (super.mouseX >= x1 && super.mouseX <= x2 && super.mouseY >= y1
-				&& super.mouseY <= y2) {
-			return true;
-		}
-		return false;
-	}
+        return super.mouseX >= x1 && super.mouseX <= x2 && super.mouseY >= y1
+                && super.mouseY <= y2;
+    }
 
 	public boolean mouseMapPosition() {
-		if (super.mouseX >= frameWidth - 21 && super.mouseX <= frameWidth && super.mouseY >= 0
-				&& super.mouseY <= 21) {
-			return false;
-		}
-		return true;
-	}
+        return !(super.mouseX >= frameWidth - 21 && super.mouseX <= frameWidth && super.mouseY >= 0
+                && super.mouseY <= 21);
+    }
 
 	private void drawLoadingMessages(int used, String s, String s1) {
 		int width = regularText.getTextWidth(used == 1 ? s : s1);
@@ -2419,7 +2410,7 @@ public class Client extends GameApplet {
 						updateChatbox = true;
 						setChannel = 0;
 					} else {
-						showChatComponents = showChatComponents ? false : true;
+						showChatComponents = !showChatComponents;
 					}
 				} else {
 					cButtonCPos = 0;
@@ -2437,7 +2428,7 @@ public class Client extends GameApplet {
 						updateChatbox = true;
 						setChannel = 1;
 					} else {
-						showChatComponents = showChatComponents ? false : true;
+						showChatComponents = !showChatComponents;
 					}
 				} else {
 					cButtonCPos = 1;
@@ -2455,7 +2446,7 @@ public class Client extends GameApplet {
 						updateChatbox = true;
 						setChannel = 2;
 					} else {
-						showChatComponents = showChatComponents ? false : true;
+						showChatComponents = !showChatComponents;
 					}
 				} else {
 					cButtonCPos = 2;
@@ -2473,7 +2464,7 @@ public class Client extends GameApplet {
 						updateChatbox = true;
 						setChannel = 3;
 					} else {
-						showChatComponents = showChatComponents ? false : true;
+						showChatComponents = !showChatComponents;
 					}
 				} else {
 					cButtonCPos = 3;
@@ -2491,7 +2482,7 @@ public class Client extends GameApplet {
 						updateChatbox = true;
 						setChannel = 4;
 					} else {
-						showChatComponents = showChatComponents ? false : true;
+						showChatComponents = !showChatComponents;
 					}
 				} else {
 					cButtonCPos = 4;
@@ -2509,7 +2500,7 @@ public class Client extends GameApplet {
 						updateChatbox = true;
 						setChannel = 5;
 					} else {
-						showChatComponents = showChatComponents ? false : true;
+						showChatComponents = !showChatComponents;
 					}
 				} else {
 					cButtonCPos = 5;
@@ -2748,9 +2739,9 @@ public class Client extends GameApplet {
 					if (Configuration.hpAboveHeads && Configuration.namesAboveHeads) {
 						newSmallFont.drawCenteredString(
 								(new StringBuilder())
-								.append(((Mob) (Mob) obj).currentHealth)
+								.append(((Mob) obj).currentHealth)
 								.append("/")
-								.append(((Mob) (Mob) obj).maxHealth)
+								.append(((Mob) obj).maxHealth)
 								.toString(),
 								spriteDrawX, spriteDrawY - 29 + text_over_head_offset, 0x3399ff, 100);
 					} // draws HP above head
@@ -2758,9 +2749,9 @@ public class Client extends GameApplet {
 							&& !Configuration.namesAboveHeads) {
 						newSmallFont.drawCenteredString(
 								(new StringBuilder())
-								.append(((Mob) (Mob) obj).currentHealth)
+								.append(((Mob) obj).currentHealth)
 								.append("/")
-								.append(((Mob) (Mob) obj).maxHealth)
+								.append(((Mob) obj).maxHealth)
 								.toString(),
 								spriteDrawX, spriteDrawY - 5 + text_over_head_offset, 0x3399ff, 100);
 					}
@@ -4875,8 +4866,8 @@ public class Client extends GameApplet {
 			try {
 				Buffer stream = Track.data(trackLoops[count], tracks[count]);
 				new SoundPlayer(
-						(InputStream) new ByteArrayInputStream(stream.payload, 0,
-								stream.currentPosition),
+                        new ByteArrayInputStream(stream.payload, 0,
+                                stream.currentPosition),
 						soundVolume[count], soundDelay[count]);
 				if (System.currentTimeMillis()
 						+ (long) (stream.currentPosition / 22) > trackTimer
@@ -4946,6 +4937,9 @@ public class Client extends GameApplet {
 		//Retry to redl cache cause it's obvious corrupt or something
 		if(buffer == null && !Configuration.JAGCACHED_ENABLED) {
 			CacheDownloader.init(true);
+			// This is way too messed up to fix, I can't understand patches to decompiled code :P
+			// So we will just exit the client and then the user can restart it.
+			System.exit(0);
 			return createArchive(file, displayedName, name, expectedCRC, x);
 		}
 
@@ -7805,11 +7799,7 @@ public class Client extends GameApplet {
 						tabAreaAltered = true;
 
 						//Spawn tab
-						if(tabId == 2) {
-							searchingSpawnTab = true;
-						} else {
-							searchingSpawnTab = false;
-						}
+                        searchingSpawnTab = tabId == 2;
 
 						break;
 					}

@@ -18,8 +18,8 @@ public class Fog {
     public void renderFog(boolean belowGround, int fogStartDistance, int fogEndDistance, int fogIntensity) {
         int pos = Rasterizer3D.scanOffsets[0];
         int src, dst, alpha;
-        int fogBegin = (int) (fogStartDistance);
-        int fogEnd = (int) (fogEndDistance);
+        int fogBegin = fogStartDistance;
+        int fogEnd = fogEndDistance;
         for (int y = 0; y < Rasterizer2D.bottomY; y++) {
             for (int x = 0; x < Rasterizer2D.lastX; x++) {
                 if (Rasterizer2D.depthBuffer[pos] >= fogEnd) {

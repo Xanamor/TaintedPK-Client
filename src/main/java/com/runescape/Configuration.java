@@ -72,7 +72,7 @@ public final class Configuration {
 	 * Enables extra frames in-between animations to give the animation a smooth
 	 * look
 	 */
-	public static boolean enableTweening = false;
+	public static boolean enableTweening = true;
 
 	/**
 	 * Used to repack indexes Index 1 = Models Index 2 = Animations Index 3 =
@@ -131,7 +131,7 @@ public final class Configuration {
 	/**
 	 * Displays OS Buddy orbs on HUD
 	 */
-	public static boolean enableOrbs = true;
+	public static boolean enableOrbs = false;
 
 	/**
 	 * Enables/Disables Revision 554 health bar
@@ -141,7 +141,7 @@ public final class Configuration {
 	/**
 	 * Enables the HUD to display 10 X the amount of hitpoints
 	 */
-	public static boolean tenXHp = true;
+	public static boolean tenXHp = false;
 	
 	/**
 	 * Should it be snow in the game? White floor.

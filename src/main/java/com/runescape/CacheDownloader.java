@@ -1,12 +1,6 @@
 package com.runescape;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.URL;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -26,7 +20,7 @@ public class CacheDownloader {
 		double current = getCurrentVersion();
 		double latest = getLatestVersion();
 
-		if(latest > current || force) {
+		if(latest > current) {
 			System.out.printf(
 					"Downloading new cache%n" +
 					"Latest: %f%n" +
@@ -43,14 +37,18 @@ public class CacheDownloader {
 				 */
 				ZipFile file = new ZipFile(SignLink.findcachedir() + CACHE_NAME);
 				file.extractAll(SignLink.findcachedir());
+				File f = file.getFile();
+				if(!f.delete()){
+				    System.out.printf("Failed to delete zip archive");
+                }
 
 				/**
 				 * Write new version
 				 */
 				File version = new File(SignLink.findcachedir() + "version.txt");
-				try (FileWriter f = new FileWriter(version)) {
-					f.write(String.valueOf(latest));
-					f.close();
+				try (FileWriter fw = new FileWriter(version)) {
+					fw.write(String.valueOf(latest));
+					fw.close();
 				}
 				
 			} catch (ZipException ze) {
@@ -58,7 +56,9 @@ public class CacheDownloader {
 			} catch(Exception e) {
 				JOptionPane.showMessageDialog(null, "Cache could not be downloaded.\nPlease try again later.");
 			}
-		}
+		} else {
+		    System.out.println("Cache is up to date");
+        }
 	}
 
 	private static void download() throws Exception {		
@@ -102,16 +102,18 @@ public class CacheDownloader {
 	}
 
 	private static double getCurrentVersion() {
-		double version = 0.0;
+		double version = -1.0;
 		try {
 			File file = new File(SignLink.findcachedir() + "version.txt");
 			BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
 			version = Double.parseDouble(br.readLine());
 			br.close();
+		} catch (FileNotFoundException fnf) {
+			version = 0.0;
 		} catch(Exception ex) {
-			//ex.printStackTrace(); 
+			System.out.printf("An exception occurred while checking the current cache version%n");
+			ex.printStackTrace();
 		}
-		// TODO: FIX THIS
 		return version;
 	}
 

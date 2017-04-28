@@ -45,6 +45,7 @@ public final class FileStore {
 			for (int in = 0, read = 0; read < 6; read += in) {
 				in = indexFile.read(buffer, read, 6 - read);
 
+				// -1 means end of file...why are we returning null if we have read to the end of the file?
 				if (in == -1) {
 					return null;
 				}
@@ -110,7 +111,7 @@ public final class FileStore {
 	}
 
 	public synchronized boolean writeFile(int length, byte data[], int index) {
-		return writeFile(data, index, length, true) ? true : writeFile(data, index, length, false);
+		return writeFile(data, index, length, true) || writeFile(data, index, length, false);
 	}
 
 	private synchronized boolean writeFile(byte bytes[], int position, int length, boolean exists) {

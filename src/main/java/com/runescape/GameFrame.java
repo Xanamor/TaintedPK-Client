@@ -19,7 +19,7 @@ public final class GameFrame extends Frame {
 
 	public GameFrame(GameApplet applet, int width, int height, boolean resizable, boolean fullscreen) {
 		this.applet = applet;
-		setTitle(Configuration.CLIENT_NAME + "    -   Version "+Configuration.CLIENT_VERSION+"   -    www.osrspk.com");
+		setTitle(Configuration.CLIENT_NAME + "    -   Version "+Configuration.CLIENT_VERSION+"   -    tpk.chtm.me");
 		setResizable(resizable);
 		setUndecorated(fullscreen);
 		setVisible(true); 
