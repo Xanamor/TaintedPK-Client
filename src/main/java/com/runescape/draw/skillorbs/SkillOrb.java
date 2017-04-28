@@ -66,9 +66,9 @@ public class SkillOrb {
 	public void draw(int x, int y) {
 		final int percentProgress = percentage();
 		Client.cacheSprite[359].drawAdvancedSprite(x, y, alpha);
-		Rasterizer2D.setDrawingArea(60 + y, x + 1, x + 30, (int) (45 - (currentLevel() >= 99 ? 100 : percentProgress)) + 1 + y);
+		Rasterizer2D.setDrawingArea(60 + y, x + 1, x + 30, 45 - (currentLevel() >= 99 ? 100 : percentProgress) + 1 + y);
 		Client.cacheSprite[360].drawAdvancedSprite(x + 1, 1 + y, alpha);
-		Rasterizer2D.setDrawingArea((int) ((currentLevel() >= 99 ? 100 : percentProgress) - 38) + y, x + 30, x + 56, 1 + y);
+		Rasterizer2D.setDrawingArea((currentLevel() >= 99 ? 100 : percentProgress) - 38 + y, x + 30, x + 56, 1 + y);
 		Client.cacheSprite[360].drawAdvancedSprite(x + 2, 1 + y, alpha);
 		Rasterizer2D.defaultDrawingAreaSize();
 		icon.drawAdvancedSprite(x + 30 - icon.myWidth / 2, 28 - icon.myHeight / 2 + y, alpha);

@@ -2952,7 +2952,7 @@ public final class Widget {
 		final Widget scrollBar = Widget.interfaceCache[5385];
 		scrollBar.totalChildren(Client.MAX_BANK_TABS);
 		for(int i = 0; i < Client.MAX_BANK_TABS; i++) {
-			addBankTabContainer(50300 + i, 109, 10, 35, 352, new String[] { "Withdraw-1", "Withdraw-5", "Withdraw-10", "Withdraw-All", "Withdraw-X", null, "Withdraw-All but one" });
+			addBankTabContainer(50300 + i, 109, 10, 35, 352, "Withdraw-1", "Withdraw-5", "Withdraw-10", "Withdraw-All", "Withdraw-X", null, "Withdraw-All but one");
 			scrollBar.child(i, 50300 + i, 40, 0);
 		}
 	}

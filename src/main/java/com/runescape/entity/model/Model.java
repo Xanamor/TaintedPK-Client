@@ -1722,14 +1722,14 @@ public class Model extends Renderable {
 			}
 
 			if (j1 > 0) {
-				xAnimOffset = (int)(xAnimOffset / j1 + x);
-				yAnimOffset = (int)(yAnimOffset / j1 + y);
-				zAnimOffset = (int)(zAnimOffset / j1 + z);
+				xAnimOffset = xAnimOffset / j1 + x;
+				yAnimOffset = yAnimOffset / j1 + y;
+				zAnimOffset = zAnimOffset / j1 + z;
 				return;
 			} else {
-				xAnimOffset = (int)x;
-				yAnimOffset = (int)y;
-				zAnimOffset = (int)z;
+				xAnimOffset = x;
+				yAnimOffset = y;
+				zAnimOffset = z;
 				return;
 			}
 		}
@@ -1804,9 +1804,9 @@ public class Model extends Renderable {
 						vertexX[l5] -= xAnimOffset;
 						vertexY[l5] -= yAnimOffset;
 						vertexZ[l5] -= zAnimOffset;
-						vertexX[l5] = (int)((vertexX[l5] * x) / 128);
-						vertexY[l5] = (int)((vertexY[l5] * y) / 128);
-						vertexZ[l5] = (int)((vertexZ[l5] * z) / 128);
+						vertexX[l5] = (vertexX[l5] * x) / 128;
+						vertexY[l5] = (vertexY[l5] * y) / 128;
+						vertexZ[l5] = (vertexZ[l5] * z) / 128;
 						vertexX[l5] += xAnimOffset;
 						vertexY[l5] += yAnimOffset;
 						vertexZ[l5] += zAnimOffset;
@@ -2442,13 +2442,10 @@ public class Model extends Renderable {
 							- (projected_vertex_y[l] - projected_vertex_y[k1])
 							* (k4 - l3) > 0) {
 						outOfReach[k] = false;
-						if (i3 < 0 || l3 < 0 || k4 < 0
-								|| i3 > Rasterizer2D.lastX
-								|| l3 > Rasterizer2D.lastX
-								|| k4 > Rasterizer2D.lastX)
-							hasAnEdgeToRestrict[k] = true;
-						else
-							hasAnEdgeToRestrict[k] = false;
+                        hasAnEdgeToRestrict[k] = i3 < 0 || l3 < 0 || k4 < 0
+                                || i3 > Rasterizer2D.lastX
+                                || l3 > Rasterizer2D.lastX
+                                || k4 > Rasterizer2D.lastX;
 						int k5 = (projected_vertex_z[l] + projected_vertex_z[k1] + projected_vertex_z[j2])
 						/ 3 + diagonal3DAboveOrigin;
 						faceLists[k5][depthListIndices[k5]++] = k;
