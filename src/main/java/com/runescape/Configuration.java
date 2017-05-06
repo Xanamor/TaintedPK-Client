@@ -19,7 +19,7 @@ public final class Configuration {
 	/**
 	 * The address of the server that the client will be connecting to
 	 */
-	public static String server_address = "167.114.23.209";
+	public static String server_address = "167.114.23.209";//167.114.23.209
 	/**
 	 * The port of the server that the client will be connecting to
 	 */
@@ -121,12 +121,12 @@ public final class Configuration {
 	/**
 	 * Displays health above entities heads
 	 */
-	public static boolean hpAboveHeads = true;
+	public static boolean hpAboveHeads = false;
 
 	/**
 	 * Displays names above entities
 	 */
-	public static boolean namesAboveHeads = true;
+	public static boolean namesAboveHeads = false;
 
 	/**
 	 * Displays OS Buddy orbs on HUD
