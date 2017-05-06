@@ -262,6 +262,14 @@ public final class ItemDefinition {
 			itemDef.actions[1] = "Wield";
 			itemDef.actions[2] = "Check";
 			break;
+		case 13281:
+			itemDef.actions = new String[5];
+			itemDef.actions[1] = "Wear";
+			break;
+		case 13282:
+			itemDef.actions = new String[5];
+			itemDef.actions[1] = "Wear";
+			break;
 		}
 		return itemDef;
 	}
